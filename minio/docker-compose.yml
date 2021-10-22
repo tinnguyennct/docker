@@ -8,7 +8,7 @@ x-minio-common: &minio-common
     - "9000:9000"
     - "9001:9001"
   environment:
-    TZ: "Asia/Ho_Chi_Minh"
+    TZ: Asia/Ho_Chi_Minh
     MINIO_ROOT_USER: minio
     MINIO_ROOT_PASSWORD: L9UU75judxgjBPXk
     MINIO_REGION_NAME: us-east-1
@@ -23,6 +23,7 @@ services:
     <<: *minio-common
     volumes:
       - ./image.his/data:/data
+      - /etc/timezone:/etc/timezone:ro
     networks:
       - deploy_default
 
