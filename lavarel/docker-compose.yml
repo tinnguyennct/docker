@@ -1,13 +1,11 @@
 version: '3.7'
 services:
-    #PHP Service
     app:
-      image: demo/laravel:v2
+      image: demo/laravel
       restart: always
       ports:
         - 80:80
         - 9117:9117
       volumes:
         - ./:/var/www/html
-        #- ./apache/apache2.conf:/etc/apache2/apache2.conf
-        - ./apache_exporter.service:/etc/systemd/system/apache_exporter.service
+        - ./mods-available/status.conf:/etc/apache2/mods-available/status.conf
