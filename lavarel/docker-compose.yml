@@ -3,9 +3,12 @@ services:
     app:
       image: demo/laravel
       restart: always
+      environment:
+        TZ: Asia/Ho_Chi_Minh
       ports:
         - 80:80
         - 9117:9117
       volumes:
         - ./:/var/www/html
-        - ./mods-available/status.conf:/etc/apache2/mods-available/status.conf
+        - ./log:/var/log/apache2/
+        - ./log/exporter:/var/log/supervisor/

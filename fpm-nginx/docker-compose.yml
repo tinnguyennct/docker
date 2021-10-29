@@ -1,0 +1,28 @@
+version: '3.7'
+x-php-fpm-common: &php-fpm-common
+  image: fpm:v1
+  restart: always
+  volumes:
+    - ./:/var/www/html
+
+services:
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - php-fpm1
+      - php-fpm2
+  php-fpm1:
+    <<: *php-fpm-common
+    ports:
+      - 9000:9000
+  php-fpm2:
+    <<: *php-fpm-common
+    ports:
+      - 9001:9000

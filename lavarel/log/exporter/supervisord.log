@@ -1,0 +1,14 @@
+2021-10-27 07:14:02,491 CRIT Supervisor running as root (no user in config file)
+2021-10-27 07:14:02,493 INFO Included extra file "/etc/supervisor/conf.d/supervisord.conf" during parsing
+2021-10-27 07:14:02,501 INFO RPC interface 'supervisor' initialized
+2021-10-27 07:14:02,502 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2021-10-27 07:14:02,503 INFO supervisord started with pid 37
+2021-10-27 07:14:03,513 INFO spawned: 'apache-exporter_00' with pid 40
+2021-10-27 07:14:04,526 INFO success: apache-exporter_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2021-10-27 07:20:39,544 CRIT Supervisor running as root (no user in config file)
+2021-10-27 07:20:39,544 INFO Included extra file "/etc/supervisor/conf.d/supervisord.conf" during parsing
+2021-10-27 07:20:39,559 INFO RPC interface 'supervisor' initialized
+2021-10-27 07:20:39,560 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2021-10-27 07:20:39,560 INFO supervisord started with pid 37
+2021-10-27 07:20:40,569 INFO spawned: 'apache-exporter_00' with pid 40
+2021-10-27 07:20:41,578 INFO success: apache-exporter_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
