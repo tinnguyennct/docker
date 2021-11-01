@@ -2,6 +2,6 @@
 # Run
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 #Start services
-docker-php-entrypoint php-fpm
+php-fpm -D
 apachectl -D FOREGROUND
 exec "$@"
