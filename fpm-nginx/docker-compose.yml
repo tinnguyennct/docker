@@ -4,20 +4,9 @@ x-php-fpm-common: &php-fpm-common
   restart: always
   volumes:
     - ./:/var/www/html
-
+  networks:
+    - nginx-fpm
 services:
-  nginx:
-    image: nginx:alpine
-    restart: always
-    ports:
-      - 80:80
-    volumes:
-      - ./:/var/www/html
-      - ./site.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    links:
-      - php-fpm1
-      - php-fpm2
   php-fpm1:
     <<: *php-fpm-common
     ports:
@@ -26,3 +15,32 @@ services:
     <<: *php-fpm-common
     ports:
       - 9001:9000
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - ./:/var/www/html
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - php-fpm1
+      - php-fpm2
+    networks:
+      - nginx-fpm
+  exporter:
+    image: nginx/nginx-prometheus-exporter:0.9.0
+    restart: always
+    ports:
+      - 9113:9113
+    command: -nginx.scrape-uri=http://tinnc.com.vn/stub_status
+    depends_on:
+      - nginx
+    networks:
+      - nginx-fpm
+networks:
+  nginx-fpm:
+    external: true

@@ -1,0 +1,11 @@
+FROM alpine:3.14
+WORKDIR /
+RUN apk add --update curl wget tar\
+        && rm -rf /var/cache/apk/*
+RUN wget https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v0.7.0/nginx-prometheus-exporter-0.7.0-linux-amd64.tar.gz
+RUN tar xvf nginx-prometheus-exporter-0.7.0-linux-amd64.tar.gz \
+        && cp nginx-prometheus-exporter /usr/local/bin \
+        && chmod +x /usr/local/bin/nginx-prometheus-exporter \
+        && addgroup --system prometheus \
+        && adduser -s /sbin/nologin --system -g prometheus prometheus
+EXPOSE 9117
